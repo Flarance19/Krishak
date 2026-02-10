@@ -1,0 +1,129 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Lexend%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+
+    <title>Stitch Design</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <!-- Navigation Bar Start -->
+    <nav style="background:#222;padding:10px 0 10px 0;margin-bottom:20px;">
+      <div style="display:flex;justify-content:center;gap:30px;">
+        <a href="lang.html" style="color:#fff;text-decoration:none;font-weight:bold;">Language</a>
+        <a href="home.html" style="color:#fff;text-decoration:none;font-weight:bold;">Home</a>
+        <a href="calender.html" style="color:#fff;text-decoration:none;font-weight:bold;">Calendar</a>
+        <a href="climate.html" style="color:#fff;text-decoration:none;font-weight:bold;">Climate</a>
+        <a href="soil.html" style="color:#fff;text-decoration:none;font-weight:bold;">Soil</a>
+        <a href="market.html" style="color:#fff;text-decoration:none;font-weight:bold;">Market</a>
+        <a href="power.html" style="color:#fff;text-decoration:none;font-weight:bold;">Power</a>
+      </div>
+    </nav>
+    <!-- Navigation Bar End -->
+    <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden" style='font-family: Lexend, "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <!-- Backend API Example -->
+        <div style="padding:20px;">
+          <button id="apiBtn" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:5px;cursor:pointer;">Test Backend API</button>
+          <div id="apiResult" style="margin-top:10px;color:#222;"></div>
+        </div>
+        <script>
+          document.getElementById('apiBtn').onclick = async function() {
+            try {
+              const res = await fetch('http://localhost:5000/', { method: 'GET' });
+              const text = await res.text();
+              document.getElementById('apiResult').innerText = text;
+            } catch (e) {
+              document.getElementById('apiResult').innerText = 'Error connecting to backend.';
+            }
+          };
+        </script>
+        <!-- ...existing code... -->
+            <div
+              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuALiaK8kBmmYTjKAflUslmhHDG-6JNbBuUL81DOFiqaFjhZaYtzJGrMCGzwYbepl68WDl9l0Ia8prsIA-h7OVWV0rso2fc0ebIZgdEKo7J9IOepwCxUpsId_tciBIFYBIyZcpsli8VZlVz5eiq7V9UljvSDq8zsuC3lRG_DMg4vlEk-754C4Ji7zxTEUqGRxIEYcUnbdnVweDejxb2DCkD8YDrg1R38ddjP8ozssWyumMBuLJ38oOpbVt_RuLgxB2QDh059cDLSUvYQ");'
+            ></div>
+          </div>
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-[#131612] tracking-light text-[32px] font-bold leading-tight min-w-72">Power Information</p></div>
+            <h2 class="text-[#131612] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Current Status</h2>
+            <div class="flex flex-wrap gap-4 p-4">
+              <div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-[#f2f4f1]">
+                <p class="text-[#131612] text-base font-medium leading-normal">Power Availability</p>
+                <p class="text-[#131612] tracking-light text-2xl font-bold leading-tight">Available</p>
+              </div>
+            </div>
+            <h2 class="text-[#131612] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Scheduled Power Cuts</h2>
+            <div class="px-4 py-3 @container">
+              <div class="flex overflow-hidden rounded-xl border border-[#dfe3dd] bg-white">
+                <table class="flex-1">
+                  <thead>
+                    <tr class="bg-white">
+                      <th class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-120 px-4 py-3 text-left text-[#131612] w-[400px] text-sm font-medium leading-normal">Date</th>
+                      <th class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-240 px-4 py-3 text-left text-[#131612] w-[400px] text-sm font-medium leading-normal">
+                        Start Time
+                      </th>
+                      <th class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-360 px-4 py-3 text-left text-[#131612] w-[400px] text-sm font-medium leading-normal">
+                        End Time
+                      </th>
+                      <th class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-480 px-4 py-3 text-left text-[#131612] w-[400px] text-sm font-medium leading-normal">Reason</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-t border-t-[#dfe3dd]">
+                      <td class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-120 h-[72px] px-4 py-2 w-[400px] text-[#6f816a] text-sm font-normal leading-normal">
+                        2024-07-20
+                      </td>
+                      <td class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-240 h-[72px] px-4 py-2 w-[400px] text-[#6f816a] text-sm font-normal leading-normal">14:00</td>
+                      <td class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-360 h-[72px] px-4 py-2 w-[400px] text-[#6f816a] text-sm font-normal leading-normal">16:00</td>
+                      <td class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-480 h-[72px] px-4 py-2 w-[400px] text-[#6f816a] text-sm font-normal leading-normal">
+                        Routine maintenance
+                      </td>
+                    </tr>
+                    <tr class="border-t border-t-[#dfe3dd]">
+                      <td class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-120 h-[72px] px-4 py-2 w-[400px] text-[#6f816a] text-sm font-normal leading-normal">
+                        2024-07-25
+                      </td>
+                      <td class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-240 h-[72px] px-4 py-2 w-[400px] text-[#6f816a] text-sm font-normal leading-normal">10:00</td>
+                      <td class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-360 h-[72px] px-4 py-2 w-[400px] text-[#6f816a] text-sm font-normal leading-normal">12:00</td>
+                      <td class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-480 h-[72px] px-4 py-2 w-[400px] text-[#6f816a] text-sm font-normal leading-normal">
+                        Infrastructure upgrade
+                      </td>
+                    </tr>
+                    <tr class="border-t border-t-[#dfe3dd]">
+                      <td class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-120 h-[72px] px-4 py-2 w-[400px] text-[#6f816a] text-sm font-normal leading-normal">
+                        2024-08-05
+                      </td>
+                      <td class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-240 h-[72px] px-4 py-2 w-[400px] text-[#6f816a] text-sm font-normal leading-normal">15:00</td>
+                      <td class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-360 h-[72px] px-4 py-2 w-[400px] text-[#6f816a] text-sm font-normal leading-normal">17:00</td>
+                      <td class="table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-480 h-[72px] px-4 py-2 w-[400px] text-[#6f816a] text-sm font-normal leading-normal">
+                        System check
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <style>
+                          @container(max-width:120px){.table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-120{display: none;}}
+                @container(max-width:240px){.table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-240{display: none;}}
+                @container(max-width:360px){.table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-360{display: none;}}
+                @container(max-width:480px){.table-4d756bc2-77b1-4313-86bf-956a480bc50c-column-480{display: none;}}
+              </style>
+            </div>
+            <h2 class="text-[#131612] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Real-time Notifications</h2>
+            <p class="text-[#131612] text-base font-normal leading-normal pb-3 pt-1 px-4">No unexpected power outages reported.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
