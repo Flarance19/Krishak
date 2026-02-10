@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Language</title>
+    <style>
+        body {
+            background-color: rgb(7, 7, 7);
+            color: rgb(250, 248, 248);
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+        h1 {
+            margin-bottom: 40px;
+            font-size: 2em;
+        }
+        .language-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .language-button {
+            background-color: #333;
+            border: 1px solid #555;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .language-button:hover {
+            background-color: #555;
+        }
+        .language-button span.script {
+            font-size: 1.5em; /* Adjust as needed for specific script sizes */
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+        <!-- Navigation Bar Start -->
+            <nav style="background:#222;padding:10px 0 10px 0;margin-bottom:20px;">
+                <div style="display:flex;justify-content:center;gap:30px;">
+                    <a href="lang.html" style="color:#fff;text-decoration:none;font-weight:bold;">Language</a>
+                    <a href="home.html" style="color:#fff;text-decoration:none;font-weight:bold;">Home</a>
+                    <a href="calender.html" style="color:#fff;text-decoration:none;font-weight:bold;">Calendar</a>
+                    <a href="climate.html" style="color:#fff;text-decoration:none;font-weight:bold;">Climate</a>
+                    <a href="soil.html" style="color:#fff;text-decoration:none;font-weight:bold;">Soil</a>
+                    <a href="market.html" style="color:#fff;text-decoration:none;font-weight:bold;">Market</a>
+                    <a href="power.html" style="color:#fff;text-decoration:none;font-weight:bold;">Power</a>
+                </div>
+            </nav>
+        <!-- Navigation Bar End -->
+                <div class="language-grid">
+            <div class="language-button" data-lang="Telugu">
+                <span class="script">అ</span> తెలుగు
+            </div>
+            <div class="language-button" data-lang="English">
+                <span class="script">A</span> English
+            </div>
+            <div class="language-button" data-lang="Hindi">
+                <span class="script">अ</span> हिंदी
+            </div>
+            <div class="language-button" data-lang="Tamil">
+                <span class="script">அ</span> தமிழ்
+            </div>
+            <div class="language-button" data-lang="Kannada">
+                <span class="script">ಅ</span> ಕನ್ನಡ
+            </div>
+            <div class="language-button" data-lang="Bengali">
+                <span class="script">অ</span> বাংলা
+            </div>
+            <div class="language-button" data-lang="Marathi">
+                <span class="script">अ</span> मराठी
+            </div>
+            <div class="language-button" data-lang="Malayalam">
+                <span class="script">അ</span> മലയാളം
+            </div>
+            <div class="language-button" data-lang="Gujarati">
+                <span class="script">અ</span> ગુજરાતી
+            </div>
+            <div class="language-button" data-lang="Odia">
+                <span class="script">ସ୍ତ୍ର</span> ଓଡ଼ିଆ
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+</body>
+        <script>
+        document.querySelectorAll('.language-button').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const language = btn.getAttribute('data-lang');
+                try {
+                    const res = await fetch('http://localhost:5000/api/language', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ language })
+                    });
+                    if (res.ok) {
+                        // Redirect to next page based on language
+                        // You can customize the redirect logic as needed
+                        if(language === 'English') {
+                            window.location.href = 'home.html';
+                        } else if(language === 'Telugu') {
+                            window.location.href = 'home.html?lang=te';
+                        } else if(language === 'Hindi') {
+                            window.location.href = 'home.html?lang=hi';
+                        } else {
+                            window.location.href = 'home.html?lang=' + language.toLowerCase();
+                        }
+                    } else {
+                        alert('Failed to save language.');
+                    }
+                } catch (err) {
+                    alert('Error connecting to server.');
+                }
+            });
+        });
+</script>
+        <!-- Backend API Example -->
+        <div style="padding:20px;">
+            <button id="apiBtn" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:5px;cursor:pointer;">Test Backend API</button>
+            <div id="apiResult" style="margin-top:10px;color:#222;"></div>
+        </div>
+        <script>
+            document.getElementById('apiBtn').onclick = async function() {
+                try {
+                    const res = await fetch('http://localhost:5000/', { method: 'GET' });
+                    const text = await res.text();
+                    document.getElementById('apiResult').innerText = text;
+                } catch (e) {
+                    document.getElementById('apiResult').innerText = 'Error connecting to backend.';
+                }
+            };
+        </script>
+</html>
